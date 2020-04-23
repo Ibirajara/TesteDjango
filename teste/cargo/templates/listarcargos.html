@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %} Cargos {% endblock %}
+
+{%block main%}
+Dentro da página de listar cargos.<br>
+cargos cadastrados:-> {{cargos|length}}
+<br><br>
+<table class="table" >
+    <thead class="thead-light" >
+        <tr>
+            <th scope="col" >Código</th>
+            <th scope="col">Nome do cargo</th>
+            <th scope="col">Salário</th>
+        </tr>
+
+    </thead>
+        {% if cargos %}
+            {% for cargo in cargos %}
+                <tbody>
+                <tr scope="row" style="width: 20px;" >{{cargo.id}}</tr>
+                <tr scope="row">{{cargo.nome_cargo}}</tr>
+                <tr scope="row">{{cargo.salario}}</tr>
+            </tbody>
+            {% endfor %}
+        {%else%}
+            <tbody>
+            <tr>
+                <th scope="row" >
+                    <td>{{v_erro}}</td>
+                </th>
+            </tr>
+        </tbody>
+        {% endif %}
+</table>
+
+
+<br><br>
+<a href="{% url 'incluirCargo' %}" >Incluir</a>                  <a href="{% url 'index' %}" >Home</a>
+    {% endblock %}
+
